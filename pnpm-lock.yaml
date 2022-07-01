@@ -1,14 +1,14 @@
 lockfileVersion: 5.4
 
 specifiers:
-  chrome-aws-lambda: ^10.1.0
+  chrome-aws-lambda: 9.1.0
   next: 12.2.0
   puppeteer-core: ^15.3.0
   react: 18.2.0
   react-dom: 18.2.0
 
 dependencies:
-  chrome-aws-lambda: registry.npmjs.org/chrome-aws-lambda/10.1.0_puppeteer-core@15.3.0
+  chrome-aws-lambda: registry.npmjs.org/chrome-aws-lambda/9.1.0_puppeteer-core@15.3.0
   next: registry.npmjs.org/next/12.2.0_biqbaboplfbrettd7655fr4n2y
   puppeteer-core: registry.npmjs.org/puppeteer-core/15.3.0
   react: registry.npmjs.org/react/18.2.0
@@ -259,14 +259,14 @@ packages:
     version: 1.1.4
     dev: false
 
-  registry.npmjs.org/chrome-aws-lambda/10.1.0_puppeteer-core@15.3.0:
-    resolution: {integrity: sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/chrome-aws-lambda/-/chrome-aws-lambda-10.1.0.tgz}
-    id: registry.npmjs.org/chrome-aws-lambda/10.1.0
+  registry.npmjs.org/chrome-aws-lambda/9.1.0_puppeteer-core@15.3.0:
+    resolution: {integrity: sha512-y6MOarSzL5LmDv8sWUdDe4wHuAAEeWMlCbLwmL6Bj+pBPava37UuEPbWD5YAXyJx6oHoC0efLGqYDi56k4KMUQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/chrome-aws-lambda/-/chrome-aws-lambda-9.1.0.tgz}
+    id: registry.npmjs.org/chrome-aws-lambda/9.1.0
     name: chrome-aws-lambda
-    version: 10.1.0
+    version: 9.1.0
     engines: {node: '>= 10.16'}
     peerDependencies:
-      puppeteer-core: ^10.1.0
+      puppeteer-core: ^9.1.0
     dependencies:
       lambdafs: registry.npmjs.org/lambdafs/2.1.1
       puppeteer-core: registry.npmjs.org/puppeteer-core/15.3.0
