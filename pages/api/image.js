@@ -47,6 +47,11 @@ export default async function Image(req, res) {
     await browser.close()
 
     // Set the `s-maxage` property to cache at the CDN layer
+    res.setHeader(
+      'Access-Control-Allow-Origin',
+      'https://briefkasten.vercel.app'
+    )
+    res.setHeader('Access-Control-Allow-Methods', 'GET')
     res.setHeader('Cache-Control', 's-maxage=31536000, public')
     res.setHeader('Content-Type', 'image/jpeg')
     return res.end(buffer)
