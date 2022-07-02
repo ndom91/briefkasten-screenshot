@@ -1,7 +1,7 @@
 # 📸 Briefkasten Screenshot API
 
 [![Demo](https://img.shields.io/badge/demo-app-green?style=flat-square)](https://briefkasten.vercel.app)
-[![Demo](https://img.shields.io/badge/demo-instance-green?style=flat-square)](https://briefkasten-screenshot.vercel.app/api/image?url=google.com)
+[![Demo](https://img.shields.io/badge/demo-instance-green?style=flat-square)](https://briefkasten-screenshot.vercel.app/api/image?url=https://google.com)
 
 Separate Next.js project with a single API route to take screenshots of bookmarked pages.
 
