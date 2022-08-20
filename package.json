@@ -2,19 +2,20 @@
   "name": "briefkasten-screenshot",
   "description": "Self-hosted Bookmarks Screenshot API",
   "author": "ndom91 <yo@ndo.dev>",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "keywords": [
     "next.js",
     "prisma",
     "bookmarks",
-    "selfhost"
+    "puppeteer"
   ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
+  "packageManager": "pnpm@7.5.1",
   "dependencies": {
     "chrome-aws-lambda": "9.1.0",
     "next": "12.2.0",
