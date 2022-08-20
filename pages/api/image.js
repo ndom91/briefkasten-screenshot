@@ -1,5 +1,4 @@
 import chrome from 'chrome-aws-lambda'
-/* import puppeteer from 'puppeteer-core' */
 import { chromium } from 'playwright-core'
 import { serverTiming } from '@/lib/helpers'
 
