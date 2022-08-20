@@ -1,13 +1,13 @@
 import chrome from 'chrome-aws-lambda'
 /* import puppeteer from 'puppeteer-core' */
-import playwright from 'playwright-core'
+import { chromium } from 'playwright-core'
 import { serverTiming } from '@/lib/helpers'
 
 export default async function Image(req, res) {
   try {
     serverTiming.start()
     serverTiming.measure('browserStart')
-    const browser = await playwright.chromium.launch({
+    const browser = await chromium.launch({
       args: chrome.args,
       executablePath:
         process.env.NODE_ENV !== 'development'
@@ -42,10 +42,10 @@ export default async function Image(req, res) {
       /(Accept all|I agree|Accept|Agree|Agree all|Ich stimme zu|Okay|OK)/
 
     serverTiming.measure('cookieHack')
-    console.log('selector', selectors.join(', '))
+    /* console.log('selector', selectors.join(', ')) */
     const elements = await page.$(`'${selectors.join(', ')}'`)
     if (elements) {
-      console.log('els', elements)
+      /* console.log('els', elements) */
       for (const el of elements) {
         const innerText = (await el.getProperty('innerText')).toString()
         regex.test(innerText, 'ig') && el.click()
