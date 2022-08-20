@@ -2,17 +2,15 @@
   "name": "briefkasten-screenshot",
   "description": "Self-hosted Bookmarks Screenshot API",
   "author": "ndom91 <yo@ndo.dev>",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "license": "MIT",
   "keywords": [
-    "next.js",
     "prisma",
     "bookmarks",
-    "puppeteer"
+    "playwright"
   ],
   "scripts": {
-    "dev:next": "next dev",
-    "build:next": "next build",
+    "dev:vercel": "vercel dev",
     "dev": "node api/index.js",
     "build": "",
     "start": "node api/index.js"
@@ -21,30 +19,34 @@
   "packageManager": "pnpm@7.5.1",
   "dependencies": {
     "chrome-aws-lambda": "9.1.0",
-    "chrome-aws-lambda-esbuild": "^14.1.4",
     "fastify": "^4.5.2",
-    "i": "^0.3.7",
-    "next": "12.2.5",
-    "npm": "^8.18.0",
-    "playwright-core": "1.22.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "playwright-core": "1.22.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "eslint": "^8.22.0",
-    "eslint-config-next": "^12.2.5",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "simple-git-hooks": "^2.8.0"
+    "simple-git-hooks": "^2.8.0",
+    "vercel": "^28.1.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "puppeteer-core"
+      ]
+    }
   },
   "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
     "extends": [
       "eslint:recommended",
-      "next",
       "prettier"
     ],
     "env": {
@@ -61,8 +63,7 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "bracketSpacing": true,
-    "arrowSpacing": true
+    "bracketSpacing": true
   },
   "commitlint": {
     "extends": [

@@ -1,9 +1,9 @@
 # 📸 Briefkasten Screenshot API
 
 [![Demo](https://img.shields.io/badge/demo-app-green?style=flat-square)](https://briefkastenhq.com)
-[![Demo](https://img.shields.io/badge/demo-instance-green?style=flat-square)](https://briefkasten-screenshot.vercel.app/api/image?url=https://google.com)
+[![Demo](https://img.shields.io/badge/demo-instance-green?style=flat-square)](https://screenshot.briefkastenhq.com/api/image?url=https://google.com)
 
-Separate Next.js project with a single API route to take screenshots of bookmarked pages.
+Separate Fastify API with a single route to take screenshots of pages for [Briefkasten](https://briefkastenhq.com) bookmarks.
 
 See also:
 
@@ -26,13 +26,13 @@ $ cd briefkasten-screenshot
 2. Install dependencies
 
 ```sh
-$ npm install
+$ pnpm install
 ```
 
-3. Run the Next.js API
+3. Run the dev server
 
 ```sh
-$ npm start
+$ pnpm dev:vercel
 ```
 
 You should now have an API Route up and running at [`http://localhost:3000/api/image`](http://localhost:3000/api/image). When pushing to production, don't forget to adjust the CORS header, `Access-Control-Allow-Origin`, to allow your main applications origin to make requests.
