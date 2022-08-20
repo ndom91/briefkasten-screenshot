@@ -1,4 +1,4 @@
-import chrome from 'chrome-aws-lambda'
+import chrome from 'chrome-aws-lambda-esbuild'
 import { chromium } from 'playwright-core'
 import { serverTiming } from '@/lib/helpers'
 

@@ -18,7 +18,10 @@
   "packageManager": "pnpm@7.5.1",
   "dependencies": {
     "chrome-aws-lambda": "9.1.0",
+    "chrome-aws-lambda-esbuild": "^14.1.4",
+    "i": "^0.3.7",
     "next": "12.2.0",
+    "npm": "^8.18.0",
     "playwright-core": "^1.25.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
