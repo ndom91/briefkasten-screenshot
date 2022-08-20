@@ -1,13 +1,13 @@
 # 📸 Briefkasten Screenshot API
 
-[![Demo](https://img.shields.io/badge/demo-app-green?style=flat-square)](https://briefkasten.vercel.app)
+[![Demo](https://img.shields.io/badge/demo-app-green?style=flat-square)](https://briefkastenhq.com)
 [![Demo](https://img.shields.io/badge/demo-instance-green?style=flat-square)](https://briefkasten-screenshot.vercel.app/api/image?url=https://google.com)
 
 Separate Next.js project with a single API route to take screenshots of bookmarked pages.
 
 See also:
 
-- [Briefkasten App Demo](https://briefkasten.vercel.app)
+- [Briefkasten App Demo](https://briefkastenhq.com)
 - [Briefkasten App Repo](https://github.com/ndom91/briefkasten)
 - [Briefkasten Extension Repo](https://github.com/ndom91/briefkasten-extension)
 - [Briefkasten Scrape Job Repo](https://github.com/ndom91/briefkasten-scrape)
