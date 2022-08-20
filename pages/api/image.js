@@ -1,8 +1,16 @@
 import chrome from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
+import { setTiming } from '@/lib/helpers'
 
 export default async function Image(req, res) {
+  const perf = {
+    total: {
+      start: performance.now(),
+    },
+  }
+
   try {
+    setTiming('browserStart', perf)
     const browser = await puppeteer.launch({
       args: chrome.args,
       executablePath:
@@ -15,7 +23,10 @@ export default async function Image(req, res) {
 
     const page = await browser.newPage()
     await page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
-    await page.goto(req.query.url, { waitUntil: 'networkidle2' })
+    setTiming('browserStart', perf)
+    setTiming('pageView', perf)
+    await page.goto(req.query.url, { waitUntil: 'networkidle0' })
+    setTiming('pageView', perf)
 
     // Hack for accepting cookie banners
     const selectors = [
@@ -29,6 +40,7 @@ export default async function Image(req, res) {
     const regex =
       /(Accept all|I agree|Accept|Agree|Agree all|Ich stimme zu|Okay|OK)/
 
+    setTiming('cookieHack', perf)
     const elements = await page.$$(selectors)
     for (const el of elements) {
       const innerText = (await el.getProperty('innerText')).toString()
@@ -42,13 +54,24 @@ export default async function Image(req, res) {
 
     // Snap screenshot
     const buffer = await page.screenshot({ type: 'jpeg', quality: 50 })
+    setTiming('cookieHack', perf)
 
     await page.close()
     await browser.close()
 
+    setTiming('total', perf)
     // Set the `s-maxage` property to cache at the CDN layer
     res.setHeader('Cache-Control', 's-maxage=31536000, public')
     res.setHeader('Content-Type', 'image/jpeg')
+    // Generate Server-Timing headers
+    res.setHeader(
+      'Server-Timing',
+      Object.entries(perf)
+        .map(([name, measurements]) => {
+          return `${name};dur=${measurements.dur}`
+        })
+        .join(',')
+    )
     return res.end(buffer)
   } catch (e) {
     console.error('E', e)
