@@ -11,14 +11,18 @@
     "puppeteer"
   ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev:next": "next dev",
+    "build:next": "next build",
+    "dev": "node api/index.js",
+    "build": "",
+    "start": "node api/index.js"
   },
+  "type": "module",
   "packageManager": "pnpm@7.5.1",
   "dependencies": {
     "chrome-aws-lambda": "9.1.0",
     "chrome-aws-lambda-esbuild": "^14.1.4",
+    "fastify": "^4.5.2",
     "i": "^0.3.7",
     "next": "12.2.5",
     "npm": "^8.18.0",
