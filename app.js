@@ -2,6 +2,7 @@ import chrome from 'chrome-aws-lambda'
 import { chromium } from 'playwright-core'
 import { serverTiming } from './../lib/helpers.js'
 import fastify from 'fastify'
+/* const fastify = require("fastify") */
 
 const allowedOrigins = ['localhost', 'briefkastenhq.com', 'ndo.dev']
 
@@ -14,6 +15,7 @@ const resolveOrigin = (origin) => {
 
 function init() {
   const app = fastify()
+
   app.get('/api/image', async (req, reply) => {
     const { url, colorScheme, skipCookieBannerClick } = req.query
     if (req.headers.origin) {
@@ -100,6 +102,7 @@ function init() {
       })
     }
   })
+
   return app
 }
 
