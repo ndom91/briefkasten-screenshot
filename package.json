@@ -13,11 +13,13 @@
     "dev:vercel": "vercel dev",
     "dev": "node api/index.js",
     "build": "",
+    "build:functions": "netlify-lambda build functions --config ./webpack.config.netlify.js",
     "start": "node api/index.js"
   },
   "type": "module",
   "packageManager": "pnpm@7.5.1",
   "dependencies": {
+    "@fastify/aws-lambda": "^3.1.1",
     "chrome-aws-lambda": "9.1.0",
     "fastify": "^4.5.2",
     "playwright-core": "1.22.2"

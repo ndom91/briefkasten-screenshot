@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^17.0.3
   '@commitlint/config-conventional': ^17.0.3
+  '@fastify/aws-lambda': ^3.1.1
   chrome-aws-lambda: 9.1.0
   eslint: ^8.22.0
   eslint-config-prettier: ^8.5.0
@@ -15,6 +16,7 @@ specifiers:
   vercel: ^28.1.0
 
 dependencies:
+  '@fastify/aws-lambda': 3.1.1
   chrome-aws-lambda: 9.1.0
   fastify: 4.5.2
   playwright-core: 1.22.2
@@ -257,6 +259,10 @@ packages:
       ajv: 8.11.0
       ajv-formats: 2.1.1
       fast-uri: 2.1.0
+    dev: false
+
+  /@fastify/aws-lambda/3.1.1:
+    resolution: {integrity: sha512-oKaTr1ZiT5ymDAoMvRhkC1ujOJLwJaScBcAAW6IxA2xlChgGStSH8vkeYSkJ68McOBFkzhrN15jBHikI7X+MSw==}
     dev: false
 
   /@fastify/deepmerge/1.1.0:
