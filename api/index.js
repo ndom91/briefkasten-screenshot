@@ -21,13 +21,14 @@ app.get('/', async () => {
 })
 
 app.get('/api/image', async (req, reply) => {
+  const { url, colorScheme, skipCookieBannerClick } = req.query
   if (req.headers.origin) {
     reply.header(
       'Access-Control-Allow-Origin',
       resolveOrigin(req.headers.origin)
     )
   }
-  if (!req.query.url) {
+  if (!url) {
     reply.header('Access-Control-Allow-Headers', 'Content-Type')
     reply.header('Content-Type', 'application/json')
     throw { statusCode: 400, message: 'Missing URL Param' }
@@ -52,40 +53,47 @@ app.get('/api/image', async (req, reply) => {
     })
     serverTiming.measure('browserStart')
     serverTiming.measure('pageView')
+    if (colorScheme) {
+      await page.emulateMedia({ colorScheme })
+    }
     await page.goto(req.query.url)
     serverTiming.measure('pageView')
 
     // Hack for accepting cookie banners
-    const selectors = [
-      '[id*=cookie] a',
-      '[class*=consent] button',
-      '[class*=cookie] a',
-      '[id*=cookie] button',
-      '[class*=cookie] button',
-    ]
+    if (!skipCookieBannerClick) {
+      const selectors = [
+        '[id*=cookie] a',
+        '[class*=consent] button',
+        '[class*=cookie] a',
+        '[id*=cookie] button',
+        '[class*=cookie] button',
+      ]
 
-    const regex =
-      /(Accept all|I agree|Accept|Agree|Agree all|Ich stimme zu|Okay|OK)/
+      const regex =
+        /(Accept all|I agree|Accept|Agree|Agree all|Ich stimme zu|Okay|OK)/
 
-    serverTiming.measure('cookieHack')
-    const elements = await page.$(`'${selectors.join(', ')}'`)
-    if (elements) {
-      for (const el of elements) {
-        const innerText = (await el.getProperty('innerText')).toString()
-        regex.test(innerText, 'ig') && el.click()
+      serverTiming.measure('cookieHack')
+      const elements = await page.$(`'${selectors.join(', ')}'`)
+      if (elements) {
+        for (const el of elements) {
+          const innerText = (await el.getProperty('innerText')).toString()
+          regex.test(innerText, 'ig') && el.click()
+        }
       }
-    }
 
+      serverTiming.measure('cookieHack')
+    }
+    serverTiming.measure('screenshot')
     // Snap screenshot
-    const buffer = await page.screenshot({ type: 'jpeg', quality: 50 })
-    serverTiming.measure('cookieHack')
+    const buffer = await page.screenshot({ type: 'png' })
+    serverTiming.measure('screenshot')
 
     await page.close()
     await browser.close()
 
     // Set the `s-maxage` property to cache at the CDN layer
     reply.header('Cache-Control', 's-maxage=31536000, public')
-    reply.header('Content-Type', 'image/jpeg')
+    reply.header('Content-Type', 'image/png')
     // Generate Server-Timing headers
     reply.header('Server-Timing', serverTiming.setHeader())
 
