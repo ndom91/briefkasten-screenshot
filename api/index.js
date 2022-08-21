@@ -4,14 +4,29 @@ import { serverTiming } from './../lib/helpers.js'
 import Fastify from 'fastify'
 
 const app = Fastify({
-  logger: true,
+  logger: process.env.NODE_ENV === 'development' ? true : false,
 })
+
+const allowedOrigins = ['localhost', 'briefkastenhq.com', 'ndo.dev']
+
+const resolveOrigin = (origin) => {
+  if (allowedOrigins.includes(new URL(origin).hostname)) {
+    return origin
+  }
+  return ''
+}
 
 app.get('/', async () => {
   return { hello: 'world' }
 })
 
-app.get('/api/image', async (req, res) => {
+app.get('/api/image', async (req, reply) => {
+  reply.header('Access-Control-Allow-Origin', resolveOrigin(req.headers.origin))
+  if (!req.query.url) {
+    reply.header('Access-Control-Allow-Headers', 'Content-Type')
+    reply.header('Content-Type', 'application/json')
+    throw { statusCode: 400, message: 'Missing URL Param' }
+  }
   try {
     serverTiming.start()
     serverTiming.measure('browserStart')
@@ -64,10 +79,10 @@ app.get('/api/image', async (req, res) => {
     await browser.close()
 
     // Set the `s-maxage` property to cache at the CDN layer
-    res.header('Cache-Control', 's-maxage=31536000, public')
-    res.header('Content-Type', 'image/jpeg')
+    reply.header('Cache-Control', 's-maxage=31536000, public')
+    reply.header('Content-Type', 'image/jpeg')
     // Generate Server-Timing headers
-    res.header('Server-Timing', serverTiming.setHeader())
+    reply.header('Server-Timing', serverTiming.setHeader())
 
     return buffer
   } catch (e) {
