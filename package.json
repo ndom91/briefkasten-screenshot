@@ -13,7 +13,7 @@
     "dev:vercel": "vercel dev",
     "dev": "node api/index.js",
     "build": "",
-    "build:functions": "netlify-lambda build functions --config ./webpack.config.netlify.js",
+    "build:functions": "netlify-lambda build functions --config ./webpack.config.netlify.cjs",
     "start": "node api/index.js"
   },
   "type": "module",
