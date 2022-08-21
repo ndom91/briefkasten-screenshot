@@ -21,7 +21,12 @@ app.get('/', async () => {
 })
 
 app.get('/api/image', async (req, reply) => {
-  reply.header('Access-Control-Allow-Origin', resolveOrigin(req.headers.origin))
+  if (req.headers.origin) {
+    reply.header(
+      'Access-Control-Allow-Origin',
+      resolveOrigin(req.headers.origin)
+    )
+  }
   if (!req.query.url) {
     reply.header('Access-Control-Allow-Headers', 'Content-Type')
     reply.header('Content-Type', 'application/json')
