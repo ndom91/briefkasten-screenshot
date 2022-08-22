@@ -1,6 +1,6 @@
 import chrome from 'chrome-aws-lambda'
 import { chromium } from 'playwright-core'
-import { serverTiming } from './../lib/helpers.js'
+import { serverTiming } from './lib/helpers.js'
 import fastify from 'fastify'
 /* const fastify = require("fastify") */
 
