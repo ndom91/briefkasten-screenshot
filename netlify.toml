@@ -6,3 +6,5 @@
   # publish = "build"
   # functions build directory
   functions = "functions-build" # always appends `-build` folder to your `functions` folder for builds
+[functions]
+  node_builder="esbuild"
