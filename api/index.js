@@ -21,7 +21,12 @@ app.get('/', async () => {
 })
 
 app.get('/api/image', async (req, reply) => {
-  const { url, colorScheme, skipCookieBannerClick } = req.query
+  let { url } = req.query
+  const { colorScheme, skipCookieBannerClick } = req.query
+
+  if (!url) {
+    url = req.body?.url ?? undefined
+  }
   if (req.headers.origin) {
     reply.header(
       'Access-Control-Allow-Origin',
@@ -33,6 +38,7 @@ app.get('/api/image', async (req, reply) => {
     reply.header('Content-Type', 'application/json')
     throw { statusCode: 400, message: 'Missing URL Param' }
   }
+
   try {
     serverTiming.start()
     serverTiming.measure('browserStart')
