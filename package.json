@@ -29,7 +29,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lint-staged": "^13.0.3",
-    "netlify-lambda": "^2.0.15",
     "prettier": "^2.7.1",
     "simple-git-hooks": "^2.8.0",
     "vercel": "^28.1.0",
