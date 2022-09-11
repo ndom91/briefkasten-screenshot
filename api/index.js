@@ -109,9 +109,9 @@ app.get('/api/image', async (req, reply) => {
     reply.header('Content-Type', 'image/png')
 
     // Generate Server-Timing headers
+    const imageBuffer = await handleScreenshot({ params: req.query, url })
     reply.header('Server-Timing', serverTiming.setHeader())
-
-    return handleScreenshot({ params: req.query, url })
+    return imageBuffer
   } catch (e) {
     console.error('Error generating screenshot -', e)
     return JSON.stringify({
