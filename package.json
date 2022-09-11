@@ -12,8 +12,6 @@
   "scripts": {
     "dev:vercel": "vercel dev",
     "dev": "node api/index.js",
-    "build": "",
-    "build:functions": "netlify-lambda build functions --config ./webpack.config.netlify.js",
     "start": "node api/index.js"
   },
   "packageManager": "pnpm@7.5.1",
