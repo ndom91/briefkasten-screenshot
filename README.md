@@ -14,7 +14,7 @@ See also:
 
 ## 🚀 Getting Started
 
-To run this yourself, you'll only need somewhere to host a Next.js application, like Vercel, Netlify, or a server of your own.
+To run this yourself, you'll only need somewhere to host a Fastify API - like Vercel, Netlify, or a server of your own.
 
 1. Clone the repository
 
